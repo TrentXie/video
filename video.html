@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,7 +6,63 @@
     <title>video</title>
 </head>
 <body>
-         <video -webkit-playsinline playsinline style="height:auto"  src="https://mat1.gtimg.com/yslp/desert/video/video1.mp4"></video>
-    <script>document.querySelectorAll('video')[0].play();document.querySelectorAll('video')[0].style.width=window.innerWidth+'px';</script>
+<div>
+        <video -webkit-playsinline playsinline  preload="auto" src="http://mat1.gtimg.com/yslp/desert/video/video1.mp4" id="video" ></video>
+	
+</div>
+<script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+<!-- <script type="text/javascript" src="http://game.qq.com/act/a20161121xzq/libs/iphone-inline-video.browser.js"></script> -->
+    <script type="text/javascript">
+    // document.querySelectorAll('body')[0].appendChild(video)
+    // show =function () {
+    //     video.style.display = "block";
+
+    //     video.play()
+
+    // }
+    // show();
+
+    // setTimeout(function(){
+    // 	// document.getElementById('video').play();
+    // },5000);
+	// makeVideoPlayableInline(video, true)
+	        var video=document.getElementById("video");//解决ios音乐不自动播放的问题
+	function autoPlayVideo() {
+	    wx.config({
+	        // 配置信息, 即使不正确也能使用 wx.ready
+	        debug: false,
+	        appId: '',
+	        timestamp: 1,
+	        nonceStr: '',
+	        signature: '',
+	        jsApiList: []
+	    });
+var ua = {
+        Android: /Android/ig.test(navigator.userAgent),
+        iOS: /AppleWebKit/.test(navigator.userAgent) && /Mobile\/\w+/.test(navigator.userAgent),
+        QQAC_ANDROID: /(^| )QQAC_Client_Android( |\/|$)/i.test(navigator.userAgent),
+        QQAC_IOS: /(^| )QQAC_Client_iOS( |\/|$)/i.test(navigator.userAgent),
+    };
+if(ua.iOS){
+	    wx.ready(function() {
+	    	// alert(1)
+	        video.play();
+	    });
+}
+	    // video.addEventListener('loadeddata', function() {
+	    //   if(video.readyState >= 2) {
+	    //     video.play();
+	    //   }
+
+	    // });
+else{
+	       if(video.readyState === 4) {
+	         video.play();
+	      }
+}
+	}
+	autoPlayVideo()
+    document.querySelectorAll('video')[0].style.width=window.innerWidth+'px';
+    </script>
 </body>
 </html>
